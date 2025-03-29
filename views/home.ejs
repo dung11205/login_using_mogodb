@@ -2,13 +2,83 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="/style.css">
+    <style>
+        /* Hiệu ứng fade-in nhẹ nhàng khi tải trang */
+        body {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Chữ chào mừng có hiệu ứng phóng to nhẹ */
+        .welcome-text {
+            font-size: 26px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            opacity: 0;
+            animation: zoomIn 0.8s ease-out forwards;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Nút Logout với hiệu ứng hover mượt */
+        .logout-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 16px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logout-btn:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Căn giữa nội dung */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+    </style>
 </head>
 <body>
-    <div class="form-container">
-        <h1>Welcome, <%= username %>!</h1>
-        <a href="/logout" class="submit-btn">Logout</a>
+    <div class="container">
+        <h1 class="welcome-text">Welcome, <%= username %>!</h1>
+        <a href="/logout" class="logout-btn">Logout</a>
     </div>
 </body>
 </html>
