@@ -1,8 +1,12 @@
 {
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
-    "mogoose": "^0.0.1-security"
+    "express-session": "^1.18.1",
+    "mogoose": "^0.0.1-security",
+    "mongodb": "^6.15.0",
+    "mongoose": "^8.13.1"
   }
 }
