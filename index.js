@@ -1,3 +1,4 @@
+
 const express = require("express");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
@@ -22,8 +23,8 @@ app.use(session({
 
 // Kết nối MongoDB
 mongoose.connect(process.env.MONGO_URI, {})
-    .then(() => console.log("✅ MongoDB Connected"))
-    .catch(err => console.error("❌ MongoDB Connection Error:", err));
+    .then(() => console.log(" MongoDB Connected"))
+    .catch(err => console.error(" MongoDB Connection Error:", err));
 
 // Định nghĩa Schema và Model
 const UserSchema = new mongoose.Schema({
@@ -66,7 +67,7 @@ app.post("/signup", async (req, res) => {
         // Kiểm tra xem email hoặc username đã tồn tại chưa
         const existingUser = await User.findOne({ $or: [{ email }, { username }] });
         if (existingUser) {
-            return res.render("signup", { error: "❌ Email hoặc Username đã được sử dụng!" });
+            return res.render("signup", { error: " Email hoặc Username đã được sử dụng!" });
         }
 
         // Hash mật khẩu
@@ -78,7 +79,7 @@ app.post("/signup", async (req, res) => {
 
         res.redirect("/");
     } catch (error) {
-        res.status(500).send("❌ Lỗi khi đăng ký!");
+        res.status(500).send(" Lỗi khi đăng ký!");
     }
 });
 
@@ -89,14 +90,14 @@ app.post("/login", async (req, res) => {
         const user = await User.findOne({ username });
 
         if (!user || !(await bcrypt.compare(password, user.password))) {
-            return res.render("login", { error: "❌ Sai tên đăng nhập hoặc mật khẩu!" });
+            return res.render("login", { error: " Sai tên đăng nhập hoặc mật khẩu!" });
         }
 
         // Lưu thông tin đăng nhập vào session
         req.session.userId = user._id;
         res.redirect("/home");
     } catch (error) {
-        res.status(500).send("❌ Lỗi khi đăng nhập!");
+        res.status(500).send(" Lỗi khi đăng nhập!");
     }
 });
 
@@ -109,5 +110,5 @@ app.get("/logout", (req, res) => {
 
 const port = 7777;
 app.listen(port, () => {
-    console.log(`🚀 Server running on port: ${port}`);
+    console.log(` Server running on port: ${port}`);
 });

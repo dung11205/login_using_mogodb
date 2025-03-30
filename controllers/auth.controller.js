@@ -18,7 +18,7 @@ exports.postSignup = async (req, res) => {
     const existingUser = await User.findOne({ $or: [{ email }, { username }] });
 
     if (existingUser) {
-      return res.send("❌ Email hoặc Username đã được sử dụng!");
+      return res.send(" Email hoặc Username đã được sử dụng!");
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
@@ -27,7 +27,7 @@ exports.postSignup = async (req, res) => {
 
     res.redirect("/");
   } catch (error) {
-    res.status(500).send("❌ Lỗi khi đăng ký!");
+    res.status(500).send(" Lỗi khi đăng ký!");
   }
 };
 
@@ -41,9 +41,9 @@ exports.postLogin = async (req, res) => {
       return res.redirect("/home");
     }
     
-    res.send("❌ Sai tên đăng nhập hoặc mật khẩu!");
+    res.send(" Sai tên đăng nhập hoặc mật khẩu!");
   } catch (error) {
-    res.status(500).send("❌ Lỗi khi đăng nhập!");
+    res.status(500).send(" Lỗi khi đăng nhập!");
   }
 };
 
