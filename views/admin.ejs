@@ -1,0 +1,70 @@
+<!-- views/admin.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body class="fade-in">
+  <div class="admin-container">
+    <h1>Quản lý người dùng</h1>
+    <p>Xin chào, <%= username %></p>
+    <div class="link-group">
+      <a href="/admin/create">Tạo Admin Mới</a>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach(user => { %>
+          <tr>
+            <td><%= user.username %></td>
+            <td><%= user.email %></td>
+            <td><%= user.role %></td>
+            <td>
+              <form action="/admin/delete/<%= user._id %>" method="POST" onsubmit="handleFormSubmit(event)" style="display:inline;">
+                <button type="submit" onclick="return confirm('Bạn có chắc muốn xóa người dùng này?')">Xóa</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <div class="link-group">
+      <a href="/home">Trang chủ</a>
+      <a href="/logout" onclick="handleLogout(event)">Đăng xuất</a>
+    </div>
+  </div>
+  <script>
+    // Hiệu ứng fade-out khi submit form
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      document.body.classList.add("fade-out");
+      setTimeout(() => {
+        event.target.submit();
+      }, 500);
+    }
+
+    // Hiệu ứng fade-out khi đăng xuất
+    function handleLogout(event) {
+      event.preventDefault();
+      document.body.classList.add("fade-out");
+      setTimeout(() => {
+        window.location.href = "/logout";
+      }, 500);
+    }
+
+    // Hiệu ứng fade-in khi tải trang
+    window.onload = () => {
+      document.body.classList.add("fade-in");
+    };
+  </script>
+</body>
+</html>

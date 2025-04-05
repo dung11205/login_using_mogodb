@@ -35,12 +35,10 @@ exports.postSignup = async (req, res) => {
 exports.postLogin = async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
-
     if (user && await bcrypt.compare(req.body.password, user.password)) {
       req.session.user = { username: user.username, email: user.email };
       return res.redirect("/home");
     }
-    
     res.send(" Sai tên đăng nhập hoặc mật khẩu!");
   } catch (error) {
     res.status(500).send(" Lỗi khi đăng nhập!");

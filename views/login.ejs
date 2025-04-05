@@ -1,29 +1,47 @@
+<!-- views/login.ejs -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="/style.css">
+  <title>Đăng nhập</title>
+  <link rel="stylesheet" href="/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div class="form-container">
-        <h1>Login</h1>
-        <% if (error) { %>
-            <p style="color: red;"><%= error %></p>
-        <% } %>
-        <form action="/login" method="post">
-            <div class="form-group">
-                <label for="username">Name:</label>
-                <input type="text" id="username" name="username" placeholder="Enter your name" required autocomplete="off">
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password" placeholder="Enter your password" required>
-            </div>
-            <button type="submit" class="submit-btn">Login</button>
-        </form>
-        <p>Don't have an account? <a href="/signup">Signup</a></p>
+<body class="fade-in">
+  <div class="form-container">
+    <h1>Đăng nhập</h1>
+    <% if (error) { %>
+      <p class="error-message"><%= error %></p>
+    <% } %>
+    <form action="/login" method="POST" onsubmit="handleFormSubmit(event)">
+      <div class="form-group">
+        <label for="username">Tên đăng nhập:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Mật khẩu:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+      </div>
+      <button type="submit">Đăng nhập</button>
+    </form>
+    <div class="link-group">
+      <a href="/signup">Don't have an account? Sign up</a>
+      <a href="/admin-login">Đăng nhập Admin</a>
     </div>
+  </div>
+  <script>
+    // Hiệu ứng fade-out khi submit form
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      document.body.classList.add("fade-out");
+      setTimeout(() => {
+        event.target.submit();
+      }, 500);
+    }
+
+    // Hiệu ứng fade-in khi tải trang
+    window.onload = () => {
+      document.body.classList.add("fade-in");
+    };
+  </script>
 </body>
 </html>

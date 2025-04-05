@@ -1,18 +1,18 @@
-<!-- views/signup.ejs -->
+<!-- views/admin-create.ejs -->
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Đăng ký</title>
+  <title>Tạo Admin Mới</title>
   <link rel="stylesheet" href="/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body class="fade-in">
   <div class="form-container">
-    <h1>Đăng ký</h1>
+    <h1>Tạo Admin Mới</h1>
     <% if (error) { %>
       <p class="error-message"><%= error %></p>
     <% } %>
-    <form action="/signup" method="POST" onsubmit="handleFormSubmit(event)">
+    <form action="/admin/create" method="POST" onsubmit="handleFormSubmit(event)">
       <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" placeholder="Enter your email" required>
@@ -24,15 +24,16 @@
       <div class="form-group">
         <label for="password">Mật khẩu:</label>
         <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        <small>Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt.</small>
       </div>
       <div class="form-group">
         <label for="confirm-password">Xác nhận mật khẩu:</label>
         <input type="password" id="confirm-password" name="confirm-password" placeholder="Re-enter your password" required>
       </div>
-      <button type="submit">Đăng ký</button>
+      <button type="submit">Tạo Admin</button>
     </form>
     <div class="link-group">
-      <a href="/">Đăng nhập</a>
+      <a href="/admin">Quay lại trang quản lý</a>
     </div>
   </div>
   <script>
